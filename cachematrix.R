@@ -26,12 +26,14 @@ makeCacheMatrix <- function(x = matrix()) {
 ## matrix inverse from cache if it exists, if not, calculate and set
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  ## Return a matrix that is the inverse of 'x'
   invm <- x$get_inv_m()
+  ## Pull from cache if inverse already exists
   if(!is.null(invm)) {
     message("pulling from cache")
     return(invm)
   } 
+  ## Compute inverse if cache does not exist
   data <- x$get_m()
   invm <- solve(data, ...)
   x$set_inv_m(invm)
